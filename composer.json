@@ -1,0 +1,16 @@
+{
+    "name": "iwd/onepagecheckout",
+    "type": "magento-module",
+    "license": "LGPL-3.0",
+    "description": "This extension dramatically reduces the steps required in the checkout process.",
+    "homepage": "http://www.iwdextensions.com",
+    "authors": [
+        {
+            "name": "Interior Web Design",
+            "email": "joe@interiorwebdesign.com"
+        }
+    ],
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}
