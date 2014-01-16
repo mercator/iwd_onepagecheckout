@@ -68,7 +68,7 @@ class IWD_OnepageCheckout_Block_Onepage_Billship extends Mage_Checkout_Block_One
                                         ->setId("{$addr_type}_customer_address")->setName("{$addr_type}_address_id")
                                         ->setValue($addressId)->setOptions($options)
                                         ->setExtraParams('onchange="'.$addr_type.'.newAddress(!this.value)"')
-                                        ->setClass('customer_address');
+                                        ->setClass('customer_address form-control');
 
             $select->addOption('', Mage::helper('onepagecheckout')->__('New Address'));
             return $select->getHtml();
@@ -91,7 +91,7 @@ class IWD_OnepageCheckout_Block_Onepage_Billship extends Mage_Checkout_Block_One
                                     ->setId("{$addr_type}:country_id")->setName("{$addr_type}[country_id]")
                                     ->setValue($countryId)->setOptions($this->getCountryOptions())
                                     ->setTitle(Mage::helper('onepagecheckout')->__('Country'))
-                                    ->setClass('validate-select');
+                                    ->setClass('form-control validate-select');
 
         if($addr_type == 'shipping')
             $select->setExtraParams('onchange="shipping.setSameAsBilling(false);"');

@@ -1,10 +1,10 @@
-<?php  
+<?php
 $mage_ver = Mage::helper('onepagecheckout')->getMagentoVersion();
 $logged		= $this->isCustomerLoggedIn();
 $has_addr	= $this->customerHasAddresses();
 
-if (!$this->getQuote()->isVirtual() && Mage::helper('onepagecheckout')->isShippingAddressAllowed()) 
-{ 
+if (!$this->getQuote()->isVirtual() && Mage::helper('onepagecheckout')->isShippingAddressAllowed())
+{
 ?>
 <ul>
     <li class="options">
@@ -36,7 +36,7 @@ if (!$this->getQuote()->isVirtual() && Mage::helper('onepagecheckout')->isShippi
 			</div>
 			<div class='clr'></div>
 			<?php
-			$cr = Mage::getStoreConfig('onepagecheckout/address_form/company'); 
+			$cr = Mage::getStoreConfig('onepagecheckout/address_form/company');
 			if ($cr !== 'hidden') : ?>
 				<div class="full">
 					<label>
@@ -48,12 +48,12 @@ if (!$this->getQuote()->isVirtual() && Mage::helper('onepagecheckout')->isShippi
 					</div>
 				</div>
 			<?php endif;
-			
+
 			$ar	= Mage::getStoreConfig('onepagecheckout/address_form/address');
-			if ($ar !== 'hidden') : 
+			if ($ar !== 'hidden') :
 			?>
 				<div class="full">
-					<label>
+                    <label for="shipping:street1"<?php if($ar === 'required'){echo ' class="required" ';}?>>
 						<?php echo $this->__('Address') ?>
 					</label>
 					<?php if($ar === 'required'){echo '<sup>*</sup>';}?>
@@ -61,17 +61,17 @@ if (!$this->getQuote()->isVirtual() && Mage::helper('onepagecheckout')->isShippi
 						<input type="text" title="<?php echo $this->__('Street Address') ?>" name="shipping[street][]" id="shipping:street1" value="<?php echo $this->htmlEscape($this->getShipAddress()->getStreet(1)) ?>" class="t1<?php if($ar === 'required'){echo ' required-entry';}?>" onchange="shipping.setSameAsBilling(false);" />
 					</div>
 				</div>
-				<?php 
+				<?php
 				$csl	= $this->helper('customer/address')->getStreetLines();
-				for ($i = 2; $i <= $csl; $i++){ 
+				for ($i = 2; $i <= $csl; $i++){
 				?>
 				<div class="full">
 					<div class="data_area">
 						<input type="text" name="shipping[street][]" id="shipping:street<?php echo $i?>" title="<?php echo $this->__('Street Address %s', $i) ?>" value="<?php echo $this->htmlEscape($this->getShipAddress()->getStreet($i)) ?>" class="t1" onchange="shipping.setSameAsBilling(false);" />
 					</div>
 				</div>
-				<?php 
-				} 
+				<?php
+				}
 
 			endif;
 
@@ -85,14 +85,14 @@ if (!$this->getQuote()->isVirtual() && Mage::helper('onepagecheckout')->isShippi
 	                </div>
 				<?php endif;
 			endif;
-			
+
 			$city_r = Mage::getStoreConfig('onepagecheckout/address_form/city');
 			$state_r= Mage::getStoreConfig('onepagecheckout/address_form/state');
 			?>
 			<div class="two_fields"<?php if(($city_r === 'hidden' && $state_r === 'hidden')){echo ' style="display:none"';}?> >
 			<?php if ($city_r !== 'hidden') : ?>
 				<div class="short">
-					<label>
+					<label for="shipping:city"<?php if ($city_r === 'required'){ echo ' class="required" ';}?>>
 						<?php echo $this->__('City') ?>
 					</label>
 					<?php if ($city_r === 'required'){ echo ' <sup>*</sup> ';}?>
@@ -123,12 +123,12 @@ if (!$this->getQuote()->isVirtual() && Mage::helper('onepagecheckout')->isShippi
 			<?php
 			$zip_r	= Mage::getStoreConfig('onepagecheckout/address_form/zip');
 			$phone_r= Mage::getStoreConfig('onepagecheckout/address_form/phone');
-			if ($zip_r !== 'hidden' || $phone_r !== 'hidden') : 
+			if ($zip_r !== 'hidden' || $phone_r !== 'hidden') :
 			?>
 				<div class="two_fields">
 				<?php if ($zip_r !== 'hidden') : ?>
 					<div class="short">
-						<label>
+                        <label for="shipping:postcode"<?php if($zip_r === 'required'){echo ' class="required" ';}?>>
 							<?php echo $this->__('Zip Code') ?>
 						</label>
 						<?php if($zip_r === 'required'){echo ' <sup>*</sup>';}?>
@@ -139,12 +139,12 @@ if (!$this->getQuote()->isVirtual() && Mage::helper('onepagecheckout')->isShippi
 				<?php endif; ?>
 				<?php if ($phone_r !== 'hidden') : ?>
 					<div class="short">
-						<label>
+                        <label for="shipping:telephone"<?php if($phone_r === 'required') { echo ' class="required" ';}?>>
 							<?php echo $this->__('Telephone') ?>
 						</label>
 						<?php if($phone_r === 'required') { echo ' <sup>*</sup> ';}?>
 						<div class="data_area">
-							<input type="text" name="shipping[telephone]" id="shipping:telephone" value="<?php echo $this->htmlEscape($this->getShipAddress()->getTelephone()) ?>" title="<?php echo $this->__('Telephone') ?>" class="t1<?php if($phone_r === 'required') { echo ' required-entry ';}?>" onchange="shipping.setSameAsBilling(false);" />
+							<input type="tel" name="shipping[telephone]" id="shipping:telephone" value="<?php echo $this->htmlEscape($this->getShipAddress()->getTelephone()) ?>" title="<?php echo $this->__('Telephone') ?>" class="t1<?php if($phone_r === 'required') { echo ' required-entry ';}?>" onchange="shipping.setSameAsBilling(false);" />
 						</div>
 					</div>
 				<?php endif; ?>
@@ -153,10 +153,10 @@ if (!$this->getQuote()->isVirtual() && Mage::helper('onepagecheckout')->isShippi
 			<?php endif ?>
 
 	        <?php
-	        $country_r = Mage::getStoreConfig('onepagecheckout/address_form/country');  
+	        $country_r = Mage::getStoreConfig('onepagecheckout/address_form/country');
 	        ?>
 	        <div class="full"<?php if($country_r === 'hidden'){ echo ' style="display:none" ';}?>>
-	        	<label>
+                <label for="shipping:country_id"<?php if($country_r === 'required') { echo ' class="required" ';}?>>
 	        		<?php echo $this->__('Country') ?>
 	        	</label>
 	        	<?php if($country_r === 'required') { echo ' <sup>*</sup> ';}?>
@@ -167,7 +167,7 @@ if (!$this->getQuote()->isVirtual() && Mage::helper('onepagecheckout')->isShippi
 
 			<?php
 			$fax_r	= Mage::getStoreConfig('onepagecheckout/address_form/fax');
-			if ($fax_r !== 'hidden') : 
+			if ($fax_r !== 'hidden') :
 			?>
 			<div lang="two_fields">
 				<div class="short">
@@ -181,11 +181,11 @@ if (!$this->getQuote()->isVirtual() && Mage::helper('onepagecheckout')->isShippi
 				</div>
 			</div>
 			<div class='clr'></div>
-			<?php 
-			endif; 
+			<?php
+			endif;
 
 			?>
-			
+
 			<?php if($mage_ver == '1.11.2.0' || $mage_ver == '1.12.0.2'):?>
                     <?php $addressAttributes = $this->getChild('customer_form_shipping_address_user_defined_attributes');?>
                     <?php if ($addressAttributes): ?>
@@ -205,7 +205,7 @@ if (!$this->getQuote()->isVirtual() && Mage::helper('onepagecheckout')->isShippi
 						<?php echo $this->__('Save in address book') ?>
 					</label>
 				</li>
-			<?php 
+			<?php
 			}
 			else
 			{
@@ -230,6 +230,6 @@ if (!$this->getQuote()->isVirtual() && Mage::helper('onepagecheckout')->isShippi
 <?php endif;?>
 //]]>
 </script>
-<?php 
-} 
+<?php
+}
 ?>

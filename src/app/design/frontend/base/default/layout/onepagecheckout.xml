@@ -30,7 +30,9 @@
                     </block>
                 </block>
 
-				<block type="checkout/cart_coupon" name="checkout.cart.coupon" as="coupon" template="onepagecheckout/onepage/coupon.phtml"/>
+                <block type="checkout/cart_coupon" name="checkout.cart.coupon" as="coupon" template="onepagecheckout/onepage/coupon.phtml"/>
+
+                <block type="core/template" name="newsletter" template="onepagecheckout/onepage/newsletter.phtml"/>
 
                 <block type="checkout/onepage_review" name="checkout.onepage.review" as="review" template="onepagecheckout/onepage/review.phtml">
                     <block type="onepagecheckout/agreements" name="checkout.onepage.agreements" as="agreements" template="onepagecheckout/onepage/agreements.phtml"/>

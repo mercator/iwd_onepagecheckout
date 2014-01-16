@@ -2,11 +2,11 @@ src/app/code/community/IWD/OnepageCheckout                      app/code/communi
 src/app/design/frontend/base/default/layout/onepagecheckout.xml app/design/frontend/base/default/layout/onepagecheckout.xml
 src/app/design/frontend/base/default/template/onepagecheckout   app/design/frontend/base/default/template/onepagecheckout
 src/app/etc/modules/IWD_OnepageCheckout.xml                     app/etc/modules/IWD_OnepageCheckout.xml
-src/locale/de_DE/IWD_OnepageCheckout.csv                        locale/de_DE/IWD_OnepageCheckout.csv
-src/locale/en_US/IWD_OnepageCheckout.csv                        locale/en_US/IWD_OnepageCheckout.csv
-src/locale/es_ES/IWD_OnepageCheckout.csv                        locale/es_ES/IWD_OnepageCheckout.csv
-src/locale/nl_NL/IWD_OnepageCheckout.csv                        locale/nl_NL/IWD_OnepageCheckout.csv
-src/locale/ru_RU/IWD_OnepageCheckout.csv                        locale/ru_RU/IWD_OnepageCheckout.csv
+src/app/locale/de_DE/IWD_OnepageCheckout.csv                    app/locale/de_DE/IWD_OnepageCheckout.csv
+src/app/locale/en_US/IWD_OnepageCheckout.csv                    app/locale/en_US/IWD_OnepageCheckout.csv
+src/app/locale/es_ES/IWD_OnepageCheckout.csv                    app/locale/es_ES/IWD_OnepageCheckout.csv
+src/app/locale/nl_NL/IWD_OnepageCheckout.csv                    app/locale/nl_NL/IWD_OnepageCheckout.csv
+src/app/locale/ru_RU/IWD_OnepageCheckout.csv                    app/locale/ru_RU/IWD_OnepageCheckout.csv
 src/lib/iwd/opcvalidation                                       lib/iwd/opcvalidation
 src/lib/MaxMind/GeoIP                                           lib/MaxMind/GeoIP
 src/skin/frontend/base/default/css/onepagecheckout.css          skin/frontend/base/default/css/onepagecheckout.css

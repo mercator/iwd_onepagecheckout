@@ -7,7 +7,7 @@
             <?php echo $this->__('Already registered? Click here to login') ?>
         </a>
     </p>
-	<?php 
+	<?php
 		echo $this->getChildHtml('customer.login');
 		echo $this->getChildHtml('customer.forgot');
     }
@@ -42,9 +42,9 @@ $browser  = $_SERVER ['HTTP_USER_AGENT'];
             <?php echo $this->getChildHtml('coupon') ?>
         </div>
         <?php if (Mage::getStoreConfig('onepagecheckout/general/comment')) : ?>
-		<div class="op_block_title">
-	    	<?php echo $this->helper('sales')->__('Comment') ?>
-	    </div>        
+        <div class="op_block_title">
+            <?php echo $this->helper('sales')->__('Comment') ?>
+        </div>
         <div class="form_fields">
             <div class="full">
                 <div class="data_area" id='comment-block'>
@@ -53,14 +53,7 @@ $browser  = $_SERVER ['HTTP_USER_AGENT'];
             </div>
         </div>
         <?php endif; ?>
-		<?php if (Mage::helper('onepagecheckout')->isSubscribeNewAllowed()) : ?>
-            <p class="newsletter">
-                <input type="checkbox" id="newsletter-signup" name="newsletter" value="1" title="<?php echo Mage::helper('newsletter')->__('Sign up for our newsletter') ?>" class="checkbox" />
-                <label for="newsletter-signup">
-                    <?php echo Mage::helper('newsletter')->__('Sign up for our newsletter') ?>
-                </label>
-            </p>
-        <?php endif; ?>
+        <?php echo $this->getChildHtml('newsletter') ?>
     </div>
 
     <div class="col-3">
@@ -102,7 +95,7 @@ $browser  = $_SERVER ['HTTP_USER_AGENT'];
 		<?php endif;?>
 
     	$('address-verification-results').show();
-    	
+
     	<?php $is_mobile	= Mage::helper('onepagecheckout')->isMobile();
     	if(!$is_mobile):?>
     	var el = $('iwdavPopupOverlay');
@@ -110,16 +103,16 @@ $browser  = $_SERVER ['HTTP_USER_AGENT'];
 			width: ww+'px',
 			height: hh+'px'
   		});
-    	
+
     	el.show();
     	<?php else:?>
-    	$('onepagecheckout_orderform').hide(); // hide form for mobile devices 
+    	$('onepagecheckout_orderform').hide(); // hide form for mobile devices
     	<?php endif;?>
     }
     function close_verification()
     {
     	<?php $is_mobile	= Mage::helper('onepagecheckout')->isMobile();
-    	if(!$is_mobile):?>        
+    	if(!$is_mobile):?>
 		$("iwdavPopupOverlay").hide();
 		<?php else:?>
 		$('onepagecheckout_orderform').show(); // show form for mobile devices
@@ -127,7 +120,7 @@ $browser  = $_SERVER ['HTTP_USER_AGENT'];
 		$('address-verification-results').hide();
 	}
 	<?php endif; ?>
-    
+
     document.observe("dom:loaded", function() {
         var win_triggers	= Array();
    		$$('.checkout-agreements .agree a').each(function(item){
