@@ -4,11 +4,9 @@
         <col />
         <col width="1" />
         <col width="1" />
-        <?php
-        $colspan = 1;
-        if ($this->helper('tax')->displayCartBothPrices()):
-            $colspan = 2;
-        ?>
+        <?php $colspan = 1; ?>
+        <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
+        <?php $colspan = 2; ?>
         <col width="1" />
         <?php endif; ?>
         <thead>
@@ -20,7 +18,7 @@
         </thead>
         <?php echo $this->getChildHtml('totals'); ?>
         <tbody>
-        <?php foreach($this->getItems() as $_item): ?>
+        <?php foreach ($this->getItems() as $_item): ?>
             <?php echo $this->getItemHtml($_item)?>
         <?php endforeach ?>
         </tbody>

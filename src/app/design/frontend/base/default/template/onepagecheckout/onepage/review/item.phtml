@@ -1,9 +1,9 @@
 <?php $_item = $this->getItem()?>
 <tr>
     <td><h3 class="product-name"><?php echo $this->htmlEscape($this->getProductName()) ?></h3>
-        <?php if ($_options = $this->getOptionList()):?>
+        <?php if ($_options = $this->getOptionList()): ?>
         <dl class="item-options">
-            <?php foreach ($_options as $_option) : ?>
+            <?php foreach ($_options as $_option): ?>
             <?php $_formatedOptionValue = $this->getFormatedOptionValue($_option) ?>
             <dt><?php echo $this->htmlEscape($_option['label']) ?></dt>
             <dd<?php if (isset($_formatedOptionValue['full_view'])): ?> class="truncated"<?php endif; ?>><?php echo $_formatedOptionValue['value'] ?>
@@ -82,7 +82,6 @@
             <?php endif; ?>
 
         </span>
-
 
         <?php if (Mage::helper('weee')->getApplied($_item)): ?>
 

@@ -56,25 +56,27 @@ if(Mage::helper('onepagecheckout')->isAddressVerificationEnabled()):
 <?php 
 	$candidates_exists	= false;
 
-	if(isset($spec_bill_error) && !empty($spec_bill_error))
+	if (isset($spec_bill_error) && !empty($spec_bill_error)) {
 		echo "<p style='color:red;'>$spec_bill_error</p>";
+    }
 
-	if(isset($spec_ship_error) && !empty($spec_ship_error))
+	if(isset($spec_ship_error) && !empty($spec_ship_error)) {
 		echo "<p style='color:red;'>$spec_ship_error</p>";
+    }
 		
-	if($bill_validation_results):
+	if ($bill_validation_results):
 	?>
 		<p><?php echo $bill_msg;?></p>
-<?php if($ship_validation_results):?>
-	<?php if($allow_not_valid):?>
+<?php if ($ship_validation_results):?>
+	<?php if($allow_not_valid): ?>
 		<div class='bs_tit'>Billing Address:</div>
 	<?php else:?>
 			<?php if(isset($bill_validation_results['candidates']) && !empty($bill_validation_results['candidates'])):?>
 		<div class='bs_tit'>Billing Address:</div>
 			<?php endif;?>
 	<?php endif;?>		
-<?php endif;?>
-<?php if($allow_not_valid):?>
+<?php endif; ?>
+<?php if ($allow_not_valid): ?>
 		<div class='va_label'>Use Original Address</div>
 		<div class='va_choice'>
 			<input class='va_bill_id' type='radio' name='va_bill_id' value='use_original_address' />
@@ -84,10 +86,10 @@ if(Mage::helper('onepagecheckout')->isAddressVerificationEnabled()):
 			<br/>
 		</div>
 		<div class='clear'></div>
-<?php endif;?>
-	<?php 
-		if(isset($bill_validation_results['error']) && !empty($bill_validation_results['error'])):
-			if(isset($bill_validation_results['candidates']) && !empty($bill_validation_results['candidates'])):
+<?php endif; ?>
+	<?php
+		if (isset($bill_validation_results['error']) && !empty($bill_validation_results['error'])):
+			if (isset($bill_validation_results['candidates']) && !empty($bill_validation_results['candidates'])):
 				$candidates_exists	= true;
 				?>
 				<div class='va_label'>Use Suggested Address</div>
@@ -109,8 +111,8 @@ if(Mage::helper('onepagecheckout')->isAddressVerificationEnabled()):
 					?>
 				</div>
 				<div class='clear'></div>
-				<?php 
-			endif;?>
+				<?php
+			endif; ?>
 		<?php
 		else:
 			$candidate = $bill_validation_results['candidates'][0];
@@ -136,7 +138,7 @@ if(Mage::helper('onepagecheckout')->isAddressVerificationEnabled()):
 ?>
 
 <?php 
-	if($ship_validation_results):
+	if ($ship_validation_results):
 	?>
 		<p><?php echo $ship_msg;?></p>
 <?php if($bill_validation_results):?>
