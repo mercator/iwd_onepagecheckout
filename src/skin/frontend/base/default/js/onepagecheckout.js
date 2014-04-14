@@ -747,7 +747,7 @@ function close_login() {
 }
 
 function check_secure_url(url) {
-    if (http_type == 'https') {
+    if (window.location.protocol == 'https:') {
         var u1 = url.substr(0, 5);
         if (u1 != 'https') {
             if (u1 == 'http:') url = 'https:' + url.substr(5);
