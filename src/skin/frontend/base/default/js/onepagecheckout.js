@@ -103,6 +103,13 @@ OPC.prototype = {
         if (this.loadWaiting != false) {
             return;
         }
+
+        checkout.real_update({
+            'payment-method': 1,
+            'shipping-method': 1
+        }, true);
+    },
+    real_save: function () {
         var isValid = true;
         if (!this.validator.validate()) {
             isValid = false;
@@ -164,7 +171,11 @@ OPC.prototype = {
         	checkout.real_update(params);   
         },200);
     },    
-    real_update: function (params) {
+    real_update: function (params, preSubmitCheck) {
+        if (typeof(preSubmitCheck) == 'undefined') {
+            preSubmitCheck = false;
+        }
+
         if (this.loadWaiting != false) {
             return;
         }
@@ -188,14 +199,29 @@ OPC.prototype = {
 //
         }
         checkout.setLoadWaiting(true);
+
+        var successCallback;
+        if(preSubmitCheck) {
+            successCallback = this.setResponsePreSubmit.bind(this);
+        } else {
+            successCallback = this.setResponse.bind(this);
+        }
+
         var request = new Ajax.Request(this.updateUrl, {
             method: 'post',
-            onSuccess: this.setResponse.bind(this),
+            onSuccess: successCallback,
             onFailure: this.ajaxFailure.bind(this),
             parameters: parameters
         });
     },
-    setResponse: function (response) {
+    setResponsePreSubmit: function (response) {
+        checkout.setResponse(response, true);
+    },
+    setResponse: function (response, preSubmitCheck) {
+        if (typeof (preSubmitCheck) == 'undefined' || preSubmitCheck !== true) {
+            preSubmitCheck = false;
+        }
+
         response = response.responseText.evalJSON();
         if (response.redirect) {
             location.href = check_secure_url(response.redirect);
@@ -240,9 +266,13 @@ OPC.prototype = {
         if (response.not_valid_address || response.billing_valid || response.shipping_valid){        	
         	show_verifications_error();
         }
+
+        if (preSubmitCheck) {
+            checkout.real_save();
+        }
         
         return false;
-    },
+    }
 };
 var BillingAddress = Class.create();
 BillingAddress.prototype = {
